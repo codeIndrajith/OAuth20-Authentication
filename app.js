@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const dotenv = require('dotenv');
 const connectDB = require('./config/database');
 const passport = require('passport');
@@ -33,6 +34,9 @@ app.use(passport.session())
 // Routes
 // app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+
+// Access page
+app.use(express.static(path.join(__dirname, 'pages')))
 
 app.listen(3000, () => {
     console.log(`Server running on port: ${process.env.PORT || 3000}`);
